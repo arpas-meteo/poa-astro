@@ -1,0 +1,48 @@
+---
+const esempio_stazione = {
+  id: 0,
+  COD_STAZ: "CA003S034",
+  NOME: "SAMASSI",
+  LOCALITA: "GENNALEO",
+  DATA_INIZIO: "1995-01-01T00:00:00",
+  DATA_FINE: "2017-02-07T12:30:00",
+  QUOTA: 89,
+  WGS84_UTM_32N_X: 493096,
+  WGS84_UTM_32N_Y: 4375110,
+  TIPO_RETE: "ex-SAR",
+  TERMO: "SI",
+  PLUVIO: "SI",
+  IDRO: "NO",
+  IDRO_CODICE: "",
+  IDRO_STAZIONE: "",
+  IDRO_LOCALITA: "",
+  TIPO_STAZ: "SAR",
+};
+
+export interface IStazione {
+  id: number;
+  COD_STAZ: string;
+  NOME: string;
+}
+
+export interface Props {
+  stazio: IStazione;
+}
+
+const { stazio } = Astro.props as Props;
+---
+
+<li class="text-lg border border-blue-200 p-2 my-4">
+  <a class="text-red-500 hover:text-blue-300" href={stazio.COD_STAZ}>
+    {stazio.COD_STAZ}: {stazio.NOME}
+  </a>
+</li>
+
+<script>
+  import confetti from "canvas-confetti";
+  const button = document.body.querySelector("button");
+
+  if (button) {
+    button.addEventListener("click", () => confetti());
+  }
+</script>

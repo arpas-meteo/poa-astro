@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/main.astro";
+import PaginaStazione from "../components/PaginaStazione.astro";
+import Stazione, { IStazione } from "../components/Stazione.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch("https://poa.alai.one/poa/anagrafica");
+  const stazioni = await response.json();
+
+  return stazioni.map((stazio: IStazione) => ({
+    params: {
+      cod_staz: stazio.COD_STAZ,
+    },
+    props: {
+      stazio,
+    },
+  }));
+}
+
+const stazio = Astro.props.stazio as IStazione;
+---
+
+<Layout title={stazio.NOME}>
+  <PaginaStazione>
+    <a class="btn" href="/">Go Back</a>
+    <h2>{stazio.NOME}</h2>
+    <div>{stazio.COD_STAZ}</div>
+  </PaginaStazione>
+</Layout>
