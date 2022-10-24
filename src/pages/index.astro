@@ -6,6 +6,7 @@ import Stazione, { IStazione } from "../components/Stazione.astro";
 // POA API
 const response = await fetch("https://poa.alai.one/poa/anagrafica");
 const stazioni = await response.json();
+let sel_stazio = stazioni;
 ---
 
 <html lang="en">
@@ -18,10 +19,10 @@ const stazioni = await response.json();
   </head>
 
   <body>
-    <div>
-      <ul>
+    <div class="container max-w-max mx-1 bg-slate-50">
+      <ul class="flex flex-wrap">
         {
-          stazioni.map((stazio: IStazione) => (
+          sel_stazio.map((stazio: IStazione) => (
             <Stazione stazio={stazio}> </Stazione>
           ))
         }
