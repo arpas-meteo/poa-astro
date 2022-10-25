@@ -2,6 +2,7 @@
 import Layout from "../layouts/main.astro";
 import PaginaStazione from "../components/PaginaStazione.astro";
 import Stazione, { IStazione } from "../components/Stazione.astro";
+import Myreact from "../components/Myreact.jsx";
 
 export async function getStaticPaths() {
   const response = await fetch("https://poa.alai.one/poa/anagrafica");
@@ -25,64 +26,6 @@ const stazio = Astro.props.stazio as IStazione;
     <a class="btn" href="/">Go Back</a>
     <h2>{stazio.NOME}</h2>
     <div>{stazio.COD_STAZ}</div>
-    <div class="container">
-      <canvas id="myChart" class="w-96 h-auto"></canvas>
-    </div>
+    <Myreact name="andrea" />
   </PaginaStazione>
 </Layout>
-
-<script>
-  import * as ChartImport from "chart.js";
-  const { Chart, registerables } = ChartImport.default
-    ? ChartImport.default
-    : ChartImport;
-  Chart.register(...registerables);
-
-  class LineChart {
-    constructor(ctx, labels, values, intesta) {
-      this.chart = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: intesta,
-              data: values,
-              borderColor: "#4c51bf",
-            },
-          ],
-        },
-      });
-    }
-
-    aggiorna(label, value) {
-      console.log(label);
-      console.log(value);
-      this.chart.data.labels = label;
-      this.chart.data.datasets[0].data = value;
-
-      this.chart.update();
-    }
-  }
-
-  const response = await fetch(
-    "https://poa.alai.one/poa/quest/CA011B539/TCI?inizio=2022&fine=2023"
-  );
-  const dati = await response.json();
-
-  const ctx = document.getElementById("myChart").getContext("2d");
-
-  const values: Array<any> = [];
-  const labels: Array<any> = [];
-  // dati.length - 1
-  for (let i = 0; i < 10; i++) {
-    let v = dati[i];
-    values.push(v[0]);
-    labels.push(v[1]);
-  }
-
-  console.log(dati);
-  console.log(values);
-  console.log(labels);
-  const myChart = new LineChart(ctx, labels, values, "Temperatura");
-</script>
