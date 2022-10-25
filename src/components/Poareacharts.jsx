@@ -2,9 +2,18 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 
+
 export default function Poareacharts(props) {
   const stazio = props.stazio;
-  const url = `https://poa.alai.one/poa/quest/${stazio.NOME}/TCI?inizio=2022&fine=2023 `;
+  const valori = ['TCI', 'P1H', 'LIT']
+  const interroga = []
+  for (let i = 0; i < valori.length; i++) {
+    const v = valori[i];
+    const url = `https://poa.alai.one/poa/quest/${stazio.COD_STAZ}/${v}?inizio=2022&fine=2023 `;
+    const obj = {'key': v, 'url':url}
+    interroga.push(obj)
+  }
+  const url = `https://poa.alai.one/poa/quest/${stazio.COD_STAZ}/TCI?inizio=2022&fine=2023 `;
   /* const local_route = "http://192.168.24.72:5009/poa/anagrafica"
   
   const http_url = local_route
@@ -43,7 +52,13 @@ export default function Poareacharts(props) {
   } */
 
   return (
-    <div>{url}</div>
+    <ul>
+      {interroga.map((v) => (
+        <li key={v.key}>
+          <a href={v.url} >{v.key}</a>
+        </li>
+      ))}
+    </ul>
     // <ul>
     //   {poa_ana.map((ana) => (
     //     <li key={ana.COD_STAZ}>

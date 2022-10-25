@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poa-astro
+  namespace: poa-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poa-astro
+  template:
+    metadata:
+      labels:
+        app: poa-astro
+    spec:
+      containers:
+        - name: http-poa-astro
+          image: registry.digitalocean.com/docean-alai-arpas/poa-astro:0.0.2
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: poa-astro-service
+  namespace: poa-backend
+spec:
+  selector:
+    app: poa-astro
+  ports:
+    - name: http-poa-astro
+      port: 80
+      targetPort: 80

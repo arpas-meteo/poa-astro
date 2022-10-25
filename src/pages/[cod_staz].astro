@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const response = await fetch("https://poa.alai.one/poa/anagrafica");
   const stazioni = await response.json();
 
-  const selezione = stazioni.splice(1, 10);
+  const selezione = stazioni; // .splice(1, 10);
 
   return selezione.map((stazio: IStazione) => ({
     params: {

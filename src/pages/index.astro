@@ -6,7 +6,7 @@ import Stazione, { IStazione } from "../components/Stazione.astro";
 // POA API
 const response = await fetch("https://poa.alai.one/poa/anagrafica");
 const stazioni = await response.json();
-const selezione = stazioni.splice(1, 10);
+const selezione = stazioni; // .splice(1, 10);
 ---
 
 <html lang="en">
@@ -27,10 +27,6 @@ const selezione = stazioni.splice(1, 10);
           ))
         }
       </ul>
-      <Button>Tailwind Button in Astro!</Button>
-      <a href="/markdown-page" class="p-4 underline"
-        >Markdown is also supported...</a
-      >
     </div>
   </body>
 </html>
