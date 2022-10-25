@@ -1,8 +1,7 @@
 ---
 import Layout from "../layouts/main.astro";
-import PaginaStazione from "../components/PaginaStazione.astro";
-import Stazione, { IStazione } from "../components/Stazione.astro";
-import Poareacharts from "../components/Poareacharts.jsx";
+import { IStazione } from "../tipi/stazione.js";
+import Poareacharts from "../components/Poareacharts.js";
 
 export async function getStaticPaths() {
   const response = await fetch("https://poa.alai.one/poa/anagrafica");
@@ -24,10 +23,5 @@ const stazio = Astro.props.stazio as IStazione;
 ---
 
 <Layout title={stazio.NOME}>
-  <PaginaStazione>
-    <a class="btn" href="/">Go Back</a>
-    <h2>{stazio.NOME}</h2>
-    <div>{stazio.COD_STAZ}</div>
-    <Poareacharts stazio={stazio} />
-  </PaginaStazione>
+  <Poareacharts stazio={stazio} />
 </Layout>

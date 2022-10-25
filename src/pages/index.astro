@@ -1,12 +1,13 @@
 ---
 // Component Imports
 import Button from "../components/Button.astro";
-import Stazione, { IStazione } from "../components/Stazione.astro";
+import Stazione from "../components/Stazione.astro";
+import { IStazione } from "../tipi/stazione.js";
 
 // POA API
 const response = await fetch("https://poa.alai.one/poa/anagrafica");
 const stazioni = await response.json();
-const selezione = stazioni; // .splice(1, 10);
+const selezione = stazioni.splice(1, 10);
 ---
 
 <html lang="en">
@@ -15,7 +16,7 @@ const selezione = stazioni; // .splice(1, 10);
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro + TailwindCSS</title>
+    <title>Poa</title>
   </head>
 
   <body>
