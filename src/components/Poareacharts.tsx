@@ -94,6 +94,13 @@ export default function Poareacharts(props: Props) {
         </div>
       </div>
       <br />
+      <div>
+        <h4>Le date</h4>
+        <label htmlFor="id_inizio">Scegli data iniziale:</label>
+        <input type="datetime" name="id_inizio" id="id_inizio" />
+        <label htmlFor="id_fine">Scegli data fine:</label>
+        <input type="datetime" name="id_fine" id="id_fine" />
+      </div>
       <ul>
         Valori presenti:
         {interroga.map((v) => (

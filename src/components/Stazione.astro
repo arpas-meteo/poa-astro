@@ -6,7 +6,7 @@ export interface Props {
 }
 
 const { stazio } = Astro.props as Props;
-const indirizzo = `${stazio.COD_STAZ}`;
+const indirizzo = `stazioni/${stazio.COD_STAZ}`;
 ---
 
 <li class="border border-blue-200 h-18 w-44 p-0 m-1">

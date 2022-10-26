@@ -1,13 +1,37 @@
 ---
-// Component Imports
-import Button from "../components/Button.astro";
-import Stazione from "../components/Stazione.astro";
-import { IStazione } from "../tipi/stazione.js";
+import Linksiti, { ISito } from "../components/Linksiti.js";
 
-// POA API
-const response = await fetch("https://poa.alai.one/poa/anagrafica");
-const stazioni = await response.json();
-const selezione = stazioni.splice(1, 10);
+const poa_py = {
+  nome: "py-poa",
+  url: "https://py-poa.alai.one",
+  nota: "Rest api - python fastapi",
+};
+
+const poa_py_docs = {
+  nome: "py-poa",
+  url: "https://py-poa.alai.one/docs",
+  nota: "Docs Rest api - python fastapi",
+};
+
+const phx_poa = {
+  nome: "py-poa",
+  url: "https://phx.alai.one",
+  nota: "Futura gestione in modifica - elixir phoenix liveview",
+};
+
+const astro_poa = {
+  nome: "astro_poa",
+  url: "https://poa-astro.alai.one/stazioni",
+  nota: "Static site - Astro.js  - Reactjs",
+};
+
+const questdb_poa = {
+  nome: "questdb_poa",
+  url: "https://questdb.alai.one",
+  nota: "Questdb - Time series Db - interfaccia pubblica - non per produzione",
+};
+
+const siti = [astro_poa, poa_py, poa_py_docs, phx_poa, questdb_poa];
 ---
 
 <html lang="en">
@@ -20,13 +44,10 @@ const selezione = stazioni.splice(1, 10);
   </head>
 
   <body>
-    <div class="container max-w-max mx-1 bg-slate-50">
-      <ul class="flex flex-wrap">
-        {
-          selezione.map((stazio: IStazione) => (
-            <Stazione stazio={stazio}> </Stazione>
-          ))
-        }
+    <div class="container mx-auto center">
+      <h3 class="text text-xl center text-bold">Progetto Poa - Siti</h3>
+      <ul class="flex flex-col">
+        {siti.map((sito: ISito) => <Linksiti sito={sito}> </Linksiti>)}
       </ul>
     </div>
   </body>

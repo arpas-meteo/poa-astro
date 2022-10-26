@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: http-poa-astro
-          image: registry.digitalocean.com/docean-alai-arpas/poa-astro:0.0.2
+          image: registry.digitalocean.com/docean-alai-arpas/poa-astro:0.0.7
           ports:
             - containerPort: 80
 ---
