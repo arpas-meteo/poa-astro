@@ -20,12 +20,15 @@
     "autoprefixer": "^10.4.7",
     "canvas-confetti": "^1.5.1",
     "chart.js": "^3.9.1",
+    "faker": "^5.5.3",
     "ol": "latest",
     "postcss": "^8.4.14",
+    "react-chartjs-2": "^4.3.1",
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
     "@astrojs/react": "^1.2.1",
+    "@types/faker": "^5.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
