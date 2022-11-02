@@ -23,6 +23,11 @@ export default function Poareacharts(props: Props) {
   const [data_inizio, setInizio] = useState("2022-01");
   const [data_fine, setInisetFine] = useState("2022-12");
 
+  const [dati, setDati] = useState({ "data": [], "label": [] });
+
+
+  const [showCharts, setShowCharts] = useState(false);
+
   const onChangeHandlerInizio = event => {
     setInizio(event.target.value);
     console.log(event.target.value)
@@ -41,6 +46,11 @@ export default function Poareacharts(props: Props) {
     interroga.push(obj)
   }
 
+  function clickButton(e, cod_stazio, cod_grand, data_inizio, data_fine) {
+
+    e.preventDefault()
+    console.log(cod_stazio, cod_grand, data_inizio, data_fine)
+  }
 
   /* const local_route = "http://192.168.24.72:5009/poa/anagrafica"
   
@@ -79,6 +89,10 @@ export default function Poareacharts(props: Props) {
     return <p>No data yet</p>;
   } */
 
+  function urlGet(codice, grand, inizio, fine) {
+    return `https://poa.alai.one/poa/quest/${codice}/${grand}?inizio=${inizio}&fine=${fine}`
+  }
+
   return (
     <div className="container mx-auto my-5 center bg-slate-50">
       <div>
@@ -104,37 +118,58 @@ export default function Poareacharts(props: Props) {
         </div>
       </div><br />
       <div>
-        <h4>Le date</h4>
-        <label htmlFor="id_inizio">Scegli data iniziale:</label>
+
+        <h4>
+          Inserisci data:
+          <span> si può inserire anno - anno-mese - anno-mese-giorno</span>
+        </h4>
+        <label htmlFor="id_inizio">Scegli data iniziale: </label>
         <input type="datetime" name="id_inizio" id="id_inizio"
+          className="text text-lg text-center h-8 m-1 boder-solid border-2 border-slate-300"
           onChange={onChangeHandlerInizio}
           value={data_inizio} />
         <label htmlFor="id_fine">Scegli data fine:</label>
         <input type="datetime" name="id_fine" id="id_fine"
+          className="text text-lg text-center h-8 m-1 boder-solid border-2 border-slate-300"
           onChange={onChangeHandlerFine}
           value={data_fine} />
       </div><br />
-      <ul>
-        Valori presenti:
+      Api REST:
+      <ul >
         {interroga.map((v) => (
           <li key={v.key}>
-            <button className="text text-xl bg-blue-100 m-2 border-spacing-1 border-lime-900">
-              <a href={`https://poa.alai.one/poa/quest/${stazio.COD_STAZ}/${v.key}?inizio=${data_inizio}&fine=${data_fine}`} >{v.key}</a>
-            </button>
-            <div>{`https://poa.alai.one/poa/quest/${stazio.COD_STAZ}/${v.key}?inizio=${data_inizio}&fine=${data_fine}`}</div>
+            <div className="flex flex-row bg-slate-200 items-center">
+              <button className="text bg-blue-100 m-2 w-12 rounded-md border-solid border-2 border-spacing-1 border-indigo-600">
+                <a href={urlGet(stazio.COD_STAZ, v.key, data_inizio, data_fine)} target="__blank">{v.key}</a>
+              </button>
+              <div>
+                {urlGet(stazio.COD_STAZ, v.key, data_inizio, data_fine)}
+              </div>
+            </div>
           </li>
         ))}
       </ul>
       <br />
-      <Example></Example>
+      {showCharts ?
+        <Example></Example>
+        : <div className="w-auto h-auto bg-slate-300" >Grafico da implementare</div>
+      }
+      <button className="text bg-blue-100 m-2 w-20 rounded-md border-solid border-2 border-spacing-1 border-indigo-600">
+        SHOW
+      </button>
+      <ul>
+        {interroga.map((v) => (
+          <li key={v.key + "x"}>
+            <div className="flex flex-row bg-slate-200 items-center">
+              <button className="text bg-red-100 m-2 w-12"
+                onClick={e => clickButton(e, stazio.COD_STAZ, v.key, data_inizio, data_fine)}>
+                {v.key}
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
-    // <ul>
-    //   {poa_ana.map((ana) => (
-    //     <li key={ana.COD_STAZ}>
-    //       <button onClick={clickButton}>{ana.COD_STAZ}</button> {ana.NOME}
-    //     </li>
-    //   ))}
-    // </ul>
   );
 }
 
