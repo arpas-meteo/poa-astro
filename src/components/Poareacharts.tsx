@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { IStazione } from '../tipi/stazione';
-import { Example } from './Example'
+import Grafico from './LineChart';
 
 
 export interface Props {
@@ -23,7 +23,8 @@ export default function Poareacharts(props: Props) {
   const [data_inizio, setInizio] = useState("2022-01");
   const [data_fine, setInisetFine] = useState("2022-12");
 
-  const [dati, setDati] = useState({ "data": [], "label": [] });
+  const [dati, setDati] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const [showCharts, setShowCharts] = useState(false);
@@ -47,54 +48,30 @@ export default function Poareacharts(props: Props) {
   }
 
   function clickButton(e, cod_stazio, cod_grand, data_inizio, data_fine) {
-
     e.preventDefault()
-    console.log(cod_stazio, cod_grand, data_inizio, data_fine)
-  }
 
-  /* const local_route = "http://192.168.24.72:5009/poa/anagrafica"
-  
-  const http_url = local_route
-
-  function clickButton(e){
-    e.preventDefault()
-    const cod_staz = e.target.innerText
-    console.log(cod_staz)
-    const fullPath = `/poa/p1h/${cod_staz}`;
-    
-    router.push(fullPath);
-  }
-  const [poa_ana, setPoaAna] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
+    const http_url = urlGet(cod_stazio, cod_grand, data_inizio, data_fine)
     setIsLoading(true);
     fetch(http_url)
       .then((response) => response.json())
       .then((data) => {
-        const anagrafica = data.filter((item) => {
-          return (item.TIPO_RETE === 'Rete Fiduciaria' && item.PLUVIO === 'SI')
-        })
-
-        setPoaAna(anagrafica);
+        console.log(cod_stazio, cod_grand, data_inizio, data_fine)
+        console.log(data)
         setIsLoading(false);
+        setDati(data)
       });
-  }, []);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
   }
-
-  if (!poa_ana) {
-    return <p>No data yet</p>;
-  } */
 
   function urlGet(codice, grand, inizio, fine) {
     return `https://poa.alai.one/poa/quest/${codice}/${grand}?inizio=${inizio}&fine=${fine}`
   }
 
+  if (isLoading) {
+    return <p className="center">Loading...</p>;
+  }
+
   return (
-    <div className="container mx-auto my-5 center bg-slate-50">
+    <div className="container mx-auto my-5 cente">
       <div>
         <h2 className="text text-slate-800">Codice Db Sassari:
           <span className="text-black font-bold"> {stazio.COD_STAZ}</span> -
@@ -118,7 +95,6 @@ export default function Poareacharts(props: Props) {
         </div>
       </div><br />
       <div>
-
         <h4>
           Inserisci data:
           <span> si può inserire anno - anno-mese - anno-mese-giorno</span>
@@ -134,7 +110,7 @@ export default function Poareacharts(props: Props) {
           onChange={onChangeHandlerFine}
           value={data_fine} />
       </div><br />
-      Api REST:
+      Api REST (va al sito esterno per vedere i dati in json):
       <ul >
         {interroga.map((v) => (
           <li key={v.key}>
@@ -150,18 +126,14 @@ export default function Poareacharts(props: Props) {
         ))}
       </ul>
       <br />
-      {showCharts ?
-        <Example></Example>
-        : <div className="w-auto h-auto bg-slate-300" >Grafico da implementare</div>
-      }
-      <button className="text bg-blue-100 m-2 w-20 rounded-md border-solid border-2 border-spacing-1 border-indigo-600">
-        SHOW
-      </button>
+      <div className="text bg-red-100 m-2 w-auto">
+        Clicca per caricare i dati:
+      </div>
       <ul>
         {interroga.map((v) => (
           <li key={v.key + "x"}>
             <div className="flex flex-row bg-slate-200 items-center">
-              <button className="text bg-red-100 m-2 w-12"
+              <button className="text text-black bg-red-200 m-2 w-64 rounded-md border-solid border-red-500"
                 onClick={e => clickButton(e, stazio.COD_STAZ, v.key, data_inizio, data_fine)}>
                 {v.key}
               </button>
@@ -169,8 +141,8 @@ export default function Poareacharts(props: Props) {
           </li>
         ))}
       </ul>
+      <Grafico dati={dati}></Grafico>
     </div>
   );
 }
-
 
