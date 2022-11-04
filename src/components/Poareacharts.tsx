@@ -27,7 +27,6 @@ export default function Poareacharts(props: Props) {
   const [isLoading, setIsLoading] = useState(false);
 
 
-  const [showCharts, setShowCharts] = useState(false);
 
   const onChangeHandlerInizio = event => {
     setInizio(event.target.value);
@@ -71,7 +70,9 @@ export default function Poareacharts(props: Props) {
   }
 
   return (
+
     <div className="container mx-auto my-5 cente">
+
       <div>
         <h2 className="text text-slate-800">Codice Db Sassari:
           <span className="text-black font-bold"> {stazio.COD_STAZ}</span> -

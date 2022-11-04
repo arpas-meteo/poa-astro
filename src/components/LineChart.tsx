@@ -57,7 +57,6 @@ export default function Grafico(props: Props) {
   function doSomethingWith() {
     const values = [];
     const labels = [];
-    let myChart = null;
 
     //
     for (let i = 0; i < dati.length - 1; i++) {
@@ -71,9 +70,22 @@ export default function Grafico(props: Props) {
         nulli.push(riga[1]);
       }
     }
+    const chartStatus = ChartJS.getChart("0")
 
-    const ctx = canvasRef.current.getContext("2d")
-    myChart = new LineChart(ctx, labels, values, "Temperatura");
+    if (chartStatus != undefined) {
+      chartStatus.destroy();
+    }
+
+    let ctx = null;
+    let myChart = null;
+
+    try {
+      ctx = canvasRef.current.getContext("2d");
+      myChart = new LineChart(ctx, labels, values, "Temperatura");
+    } catch (error) {
+      console.log(ctx);
+      console.log(myChart);
+    }
   }
 
   React.useEffect(() => {
