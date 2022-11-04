@@ -2,17 +2,17 @@
 import React from "react";
 import { IStazione } from "../tipi/stazione";
 
-/* import * as ChartImport from "chart.js";
-const { Chart, LineElement } = ChartImport.default
+import * as ChartImport from "chart.js";
+const { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } = ChartImport.default
   ? ChartImport.default
   : ChartImport;
 
-Chart.register(LineElement); */
+/* Chart.register(LineElement);
 
 import { Chart } from 'react-chartjs-2';
-import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
+import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js'; */
 
-ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
+Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
 
 
 export interface Props {
@@ -22,7 +22,7 @@ export interface Props {
 class LineChart {
   chart: any;
   constructor(ctx: any, labels: any[], values: any[], intesta: string) {
-    this.chart = new ChartJS(ctx, {
+    this.chart = new Chart(ctx, {
       type: "line",
       data: {
         labels: labels,
@@ -70,10 +70,12 @@ export default function Grafico(props: Props) {
         nulli.push(riga[1]);
       }
     }
-    const chartStatus = ChartJS.getChart("0")
+
+    const chartStatus = Chart.getChart("0")
 
     if (chartStatus != undefined) {
       chartStatus.destroy();
+      console.log("destroy")
     }
 
     let ctx = null;
