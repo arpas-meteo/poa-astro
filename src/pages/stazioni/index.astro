@@ -4,7 +4,7 @@ import Stazione from "../../components/Stazione.astro";
 import { IStazione } from "../../tipi/stazione.js";
 
 // POA API
-const response = await fetch("https://poa.alai.one/poa/anagrafica");
+const response = await fetch("http://15.161.134.66:8000/poa/anagrafica");
 const stazioni = await response.json();
 const selezione = stazioni; //.splice(1, 10);
 ---
