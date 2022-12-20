@@ -4,7 +4,10 @@ import { IStazione } from "../../tipi/stazione.js";
 import Poareacharts from "../../components/Poareacharts";
 
 export async function getStaticPaths() {
-  const response = await fetch("https://poa.alai.one/poa/anagrafica");
+  let url = "https://poa.alai.one/poa/anagrafica";
+  url = "http://15.161.134.66:8000/poa/anagrafica";
+
+  const response = await fetch(url);
   const stazioni = await response.json();
 
   const selezione = stazioni; // .splice(1, 10);

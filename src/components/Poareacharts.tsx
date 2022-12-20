@@ -41,7 +41,7 @@ export default function Poareacharts(props: Props) {
   const interroga = []
   for (let i = 0; i < valori.length; i++) {
     const v = valori[i];
-    const url = `https://poa.alai.one/poa/quest/${stazio.COD_STAZ}/${v}?inizio=2022&fine=2023`;
+    const url = `http://15.161.134.66:8000/poa/quest/${stazio.COD_STAZ}/${v}?inizio=2022&fine=2023`;
     const obj = { 'key': v, 'url': url }
     interroga.push(obj)
   }
@@ -62,7 +62,9 @@ export default function Poareacharts(props: Props) {
   }
 
   function urlGet(codice, grand, inizio, fine) {
-    return `https://poa.alai.one/poa/quest/${codice}/${grand}?inizio=${inizio}&fine=${fine}`
+    const vecchio = `https://poa.alai.one/poa/quest/${codice}/${grand}?inizio=${inizio}&fine=${fine}`
+
+    return `http://15.161.134.66:8000/poa/quest/${codice}/${grand}?inizio=${inizio}&fine=${fine}`
   }
 
   if (isLoading) {
