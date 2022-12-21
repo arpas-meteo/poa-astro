@@ -2,13 +2,10 @@
 import Layout from "../../layouts/main.astro";
 import { IStazione } from "../../tipi/stazione.js";
 import Poareacharts from "../../components/Poareacharts";
+import { anagrafica } from "../../tipi/anagrafica";
 
 export async function getStaticPaths() {
-  let url = "https://poa.alai.one/poa/anagrafica";
-  url = "http://15.161.134.66:8000/poa/anagrafica";
-
-  const response = await fetch(url);
-  const stazioni = await response.json();
+  const stazioni = anagrafica;
 
   const selezione = stazioni; // .splice(1, 10);
 

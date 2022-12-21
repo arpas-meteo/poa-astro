@@ -2,10 +2,10 @@
 // Component Imports
 import Stazione from "../../components/Stazione.astro";
 import { IStazione } from "../../tipi/stazione.js";
+import { anagrafica } from "../../tipi/anagrafica";
 
 // POA API
-const response = await fetch("http://15.161.134.66:8000/poa/anagrafica");
-const stazioni = await response.json();
+const stazioni = anagrafica;
 const selezione = stazioni; //.splice(1, 10);
 ---
 
