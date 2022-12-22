@@ -10,3 +10,11 @@ docker push registry.digitalocean.com/docean-alai-arpas/poa-astro:0.0.13
 kubectl apply -f k8_astro.yaml
 
 node download_anagrafica.js
+
+ls -l /winshare/Dati-lx/poa/idrometri/generale
+
+
+cp -r /winshare/Dati-lx/poa/idrometri/generale ./public/idrometri
+
+
+

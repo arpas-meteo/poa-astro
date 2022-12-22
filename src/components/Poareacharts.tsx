@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
-import { IStazione } from '../tipi/stazione';
+import { IStazione } from '../tipi/stazione_ana';
 import Grafico from './LineChart';
 
 

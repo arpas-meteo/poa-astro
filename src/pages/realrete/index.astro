@@ -1,12 +1,12 @@
 ---
 // Component Imports
 import Stazione from "../../components/Stazione.astro";
-import { IStazione, stazione_ana } from "../../tipi/stazione_ana.js";
-
+import Realrete from "../../components/Realrete";
+import { IRealrete, real_rete_ana } from "../../tipi/real_rete_ana";
 
 // POA API
-const stazioni = stazione_ana;
-const selezione = stazioni; //.splice(1, 10);
+const realrete = real_rete_ana;
+const selezione = realrete; //.splice(1, 10);
 ---
 
 <html lang="en">
@@ -20,11 +20,11 @@ const selezione = stazioni; //.splice(1, 10);
 
   <body>
     <div class="container max-w-max mx-1 bg-slate-50">
-      <h4>Progetto Poa - Stazioni</h4>
+      <h4>Rete idrometrica fiduciaria</h4>
       <ul class="flex flex-wrap">
         {
-          selezione.map((stazio: IStazione) => (
-            <Stazione stazio={stazio}> </Stazione>
+          selezione.map((realrete: IRealrete) => (
+            <Realrete rete={realrete}> </Realrete>
           ))
         }
       </ul>

@@ -1,6 +1,6 @@
 
 import React from "react";
-import { IStazione } from "../tipi/stazione";
+import { IStazione } from "../tipi/stazione_ana";
 
 import * as ChartImport from "chart.js";
 const { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } = ChartImport.default

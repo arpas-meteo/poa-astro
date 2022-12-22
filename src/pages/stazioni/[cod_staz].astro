@@ -1,11 +1,10 @@
 ---
 import Layout from "../../layouts/main.astro";
-import { IStazione } from "../../tipi/stazione.js";
 import Poareacharts from "../../components/Poareacharts";
-import { anagrafica } from "../../tipi/anagrafica";
+import { IStazione, stazione_ana } from "../../tipi/stazione_ana.js";
 
 export async function getStaticPaths() {
-  const stazioni = anagrafica;
+  const stazioni = stazione_ana;
 
   const selezione = stazioni; // .splice(1, 10);
 
