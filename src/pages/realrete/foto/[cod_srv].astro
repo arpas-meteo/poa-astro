@@ -1,0 +1,24 @@
+---
+import Layout from "../../../layouts/main.astro";
+import RealreteFoto from "../../../components/Realrete_foto";
+import { IRealrete, real_rete_ana } from "../../../tipi/real_rete_ana";
+
+export async function getStaticPaths() {
+  const realrete = real_rete_ana;
+  const selezione = realrete; // .splice(1, 10);
+  return selezione.map((realrete: IRealrete) => ({
+    params: {
+      cod_srv: realrete.cod_srv,
+    },
+    props: {
+      realrete,
+    },
+  }));
+}
+
+const realrete = Astro.props.realrete as IRealrete;
+---
+
+<Layout title={realrete.cod_srv}>
+  <RealreteFoto rete={realrete} />
+</Layout>

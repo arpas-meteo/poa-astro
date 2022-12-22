@@ -10,18 +10,11 @@ export interface Props {
 }
 
 
-export default function RealreteDettaglio(props: Props) {
+export default function RealreteDeflusso(props: Props) {
     const rete = props.rete;
-    const indirizzo = `/realrete/${rete.cod_srv}`;
-
-    const foto = `/idrometri/generale/${rete.cod_srv}.jpg`;
     const foto_scala = `/idrometri/deflusso/${rete.cod_srv}_scala_deflusso.svg`;
     // const foto_scala_png = `/idrometri/deflusso/${rete.cod_srv}_scala_deflusso.png`;
     return (
-        <div className="flex flex-row">
-            <img src={foto} alt="Foto idrometro" className="h-auto w-auto"></img>
-            <img src={foto_scala} alt="Scala deflusso svg" className="h-auto"></img>
-        </div>
-
+        <img src={foto_scala} alt="Scala deflusso svg" className="h-auto"></img>
     )
 }
