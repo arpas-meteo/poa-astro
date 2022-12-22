@@ -16,6 +16,6 @@ export default function RealreteDettaglio(props: Props) {
     const foto = `/idrometri/generale/${rete.cod_srv}.jpg`;
     // const foto_scala_png = `/idrometri/deflusso/${rete.cod_srv}_scala_deflusso.png`;
     return (
-        <img src={foto} alt="Foto idrometro" className="h-auto w-auto"></img>
+        <img src={foto} alt="Foto non disponibile" className="h-auto w-auto"></img>
     )
 }
