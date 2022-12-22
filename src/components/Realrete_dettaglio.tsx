@@ -20,7 +20,7 @@ export default function RealreteDettaglio(props: Props) {
     return (
         <div className="flex flex-row">
             <img src={foto} alt="Foto idrometro" className="h-auto w-auto"></img>
-            <img src={foto_scala} alt="Scala deflusso svg" className="h-auto"></img>
+            <img src={foto_scala} alt="Nessun dato" className="h-auto"></img>
         </div>
 
     )

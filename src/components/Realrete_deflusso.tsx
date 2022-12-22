@@ -15,6 +15,6 @@ export default function RealreteDeflusso(props: Props) {
     const foto_scala = `/idrometri/deflusso/${rete.cod_srv}_scala_deflusso.svg`;
     // const foto_scala_png = `/idrometri/deflusso/${rete.cod_srv}_scala_deflusso.png`;
     return (
-        <img src={foto_scala} alt="Scala deflusso svg" className="h-auto"></img>
+        <img src={foto_scala} alt="Nessun dato" className="h-auto"></img>
     )
 }
