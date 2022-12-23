@@ -22,6 +22,5 @@ export default function RealreteDettaglio(props: Props) {
             <img src={foto} alt="Foto idrometro" className="h-auto w-auto"></img>
             <img src={foto_scala} alt="Nessun dato" className="h-auto"></img>
         </div>
-
     )
 }
