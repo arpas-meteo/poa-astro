@@ -14,7 +14,7 @@ node download_anagrafica.js
 ls -l /winshare/Dati-lx/poa/idrometri/generale
 
 
-cp -r /winshare/Dati-lx/poa/idrometri/generale ./public/idrometri
+cp -r /winshare/Dati-lx/poa/idrometri/generale/*.jpg ./public/idrometri
 
 
 
